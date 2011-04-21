@@ -21,7 +21,7 @@
 # 
 
 from gnuradio import gr, blks2
-from gnuradio import usrp
+from gnuradio import usrp_options
 from gnuradio import eng_notation
 from gnuradio.eng_option import eng_option
 from optparse import OptionParser
@@ -48,70 +48,16 @@ class my_top_block(gr.top_block):
             raise SystemExit
 
         # Set up USRP source
-        self._setup_usrp_source()
-        ok = self.set_freq(self._rx_freq)
-        if not ok:
-            print "Failed to set Rx frequency to %s" % (eng_notation.num_to_str(self._rx_freq))
-            raise ValueError, eng_notation.num_to_str(self._rx_freq)
-        g = self.subdev.gain_range()
-        if options.show_rx_gain_range:
-            print "Rx Gain Range: minimum = %g, maximum = %g, step size = %g" \
-                  % (g[0], g[1], g[2])
-        self.set_gain(options.rx_gain)
-        self.set_auto_tr(True)                 # enable Auto Transmit/Receive switching
+        self._setup_usrp_source(options)
 
         # Set up receive path
         self.rxpath = receive_path(callback, options)
 
         self.connect(self.u, self.rxpath)
         
-    def _setup_usrp_source(self):
-        self.u = usrp.source_c (fusb_block_size=self._fusb_block_size,
-                                fusb_nblocks=self._fusb_nblocks)
-        adc_rate = self.u.adc_rate()
-
-        self.u.set_decim_rate(self._decim)
-
-        # determine the daughterboard subdevice we're using
-        if self._rx_subdev_spec is None:
-            self._rx_subdev_spec = usrp.pick_rx_subdevice(self.u)
-        self.subdev = usrp.selected_subdev(self.u, self._rx_subdev_spec)
-
-        self.u.set_mux(usrp.determine_rx_mux_value(self.u, self._rx_subdev_spec))
-
-    def set_freq(self, target_freq):
-        """
-        Set the center frequency we're interested in.
-
-        @param target_freq: frequency in Hz
-        @rypte: bool
-
-        Tuning is a two step process.  First we ask the front-end to
-        tune as close to the desired frequency as it can.  Then we use
-        the result of that operation and our target_frequency to
-        determine the value for the digital up converter.
-        """
-        r = self.u.tune(0, self.subdev, target_freq)
-        if r:
-            return True
-
-        return False
-
-    def set_gain(self, gain):
-        """
-        Sets the analog gain in the USRP
-        """
-        if gain is None:
-            r = self.subdev.gain_range()
-            gain = (r[0] + r[1])/2               # set gain to midpoint
-        self.gain = gain
-        return self.subdev.set_gain(gain)
-
-    def set_auto_tr(self, enable):
-        return self.subdev.set_auto_tr(enable)
-
-    def decim(self):
-        return self._decim
+    def _setup_usrp_source(self, options):
+        self.u = usrp_options.create_usrp_source(options)
+        self.u.set_decim(self._decim)
 
     def add_options(normal, expert):
         """
@@ -131,9 +77,7 @@ class my_top_block(gr.top_block):
         expert.add_option("-d", "--decim", type="intx", default=128,
                           help="set fpga decimation rate to DECIM [default=%default]")
         expert.add_option("", "--snr", type="eng_float", default=30,
-                          help="set the SNR of the channel in dB [default=%default]")
-   
-
+                          help="set the SNR of the channel in dB [default=%default]")   
     # Make a static method to call before instantiation
     add_options = staticmethod(add_options)
 
@@ -145,6 +89,7 @@ def add_freq_option(parser):
         parser.values.rx_freq = value
         parser.values.tx_freq = value
 
+    usrp_options.add_rx_options(parser)
     if not parser.has_option('--freq'):
         parser.add_option('-f', '--freq', type="eng_float",
                           action="callback", callback=freq_callback,
