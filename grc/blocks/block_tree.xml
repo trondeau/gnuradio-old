@@ -298,6 +298,8 @@
 	<cat>
 		<name>OFDM</name>
 	        <block>blks2_ofdm_sync_pn</block>
+		<block>gr_ofdm_cyclic_prefixer</block>
+		<block>gr_ofdm_insert_preamble</block>
 		<block>gr_ofdm_sampler</block>
 		<block>gr_ofdm_frame_acquisition</block>
 	</cat>

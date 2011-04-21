@@ -145,6 +145,8 @@ dist_ourdata_DATA = \
 	gr_not_xx.xml \
 	gr_null_sink.xml \
 	gr_null_source.xml \
+	gr_ofdm_cyclic_prefixer.xml \
+	gr_ofdm_insert_preamble.xml \
 	gr_ofdm_sampler.xml \
 	gr_ofdm_frame_acquisition.xml \
 	gr_or_xx.xml \
