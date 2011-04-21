@@ -45,6 +45,7 @@ dist_ourdata_DATA = \
 	blks2_nbfm_tx.xml \
 	blks2_ofdm_demod.xml \
 	blks2_ofdm_mod.xml \
+	blks2_ofdm_sync_pn.xml \
 	blks2_packet_decoder.xml \
 	blks2_packet_encoder.xml \
 	blks2_pfb_arb_resampler.xml \
@@ -144,6 +145,8 @@ dist_ourdata_DATA = \
 	gr_not_xx.xml \
 	gr_null_sink.xml \
 	gr_null_source.xml \
+	gr_ofdm_sampler.xml \
+	gr_ofdm_frame_acquisition.xml \
 	gr_or_xx.xml \
 	gr_packed_to_unpacked_xx.xml \
 	gr_peak_detector2_fb.xml \
