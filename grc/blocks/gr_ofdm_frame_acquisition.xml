@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!--
+###################################################
+##OFDM Frame Acquisition
+###################################################
+ -->
+<block>
+	<name>OFDM Frame Acquisition</name>
+	<key>gr_ofdm_frame_acquisition</key>
+	<import>from gnuradio import gr</import>
+	<make>gr.ofdm_frame_acquisition(
+	  $occ_tones,
+	  $fft_length,
+	  $cp_length,
+	  $known_symbol,
+	  $max_fft_shift_len)
+	</make>
+	<param>
+		<name>Occupied Tones</name>
+		<key>occ_tones</key>
+		<type>int</type>
+	</param>
+	<param>
+		<name>FFT Length</name>
+		<key>fft_length</key>
+		<type>int</type>
+	</param>
+	<param>
+		<name>CP Length</name>
+		<key>cp_length</key>
+		<type>int</type>
+	</param>
+	<param>
+		<name>Known Symbol</name>
+		<key>known_symbol</key>
+		<type>complex_vector</type>
+	</param>
+	<param>
+		<name>Max FFT Shift Length</name>
+		<key>max_fft_shift_len</key>
+		<type>int</type>
+	</param>
+	<sink>
+		<name>in</name>
+		<type>complex</type>
+		<vlen>$fft_length</vlen>
+	</sink>
+	<sink>
+		<name>time</name>
+		<type>byte</type>
+		<vlen>$fft_length</vlen>
+	</sink>
+	<source>
+		<name>out</name>
+		<type>complex</type>
+		<vlen>$occ_tones</vlen>
+	</source>
+	<source>
+		<name>time</name>
+		<type>byte</type>
+	</source>
+</block>

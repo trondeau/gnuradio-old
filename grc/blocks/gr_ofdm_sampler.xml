@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+###################################################
+##OFDM Sampler
+###################################################
+ -->
+<block>
+	<name>OFDM Sampler</name>
+	<key>gr_ofdm_sampler</key>
+	<import>from gnuradio import gr</import>
+	<make>gr.ofdm_sampler(
+	  $fft_length, 
+	  $symbol_length,
+	  $timeout)
+	</make>
+	<param>
+		<name>FFT Length</name>
+		<key>fft_length</key>
+		<type>int</type>
+	</param>
+	<param>
+		<name>Symbol Length</name>
+		<key>symbol_length</key>
+		<type>int</type>
+	</param>
+	<param>
+		<name>Timeout</name>
+		<key>timeout</key>
+		<value>1000</value>
+		<type>int</type>
+	</param>
+	<sink>
+		<name>in</name>
+		<type>complex</type>
+	</sink>
+	<sink>
+		<name>time</name>
+		<type>byte</type>
+	</sink>
+	<source>
+		<name>out</name>
+		<type>complex</type>
+		<vlen>$fft_length</vlen>
+	</source>
+	<source>
+		<name>time</name>
+		<type>byte</type>
+		<vlen>$fft_length</vlen>
+	</source>
+</block>

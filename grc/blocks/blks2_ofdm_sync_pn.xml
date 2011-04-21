@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!--
+###################################################
+##OFDM SYNC - PN
+###################################################
+ -->
+<block>
+	<name>OFDM Sync - PN</name>
+	<key>blks2_ofdm_sync_pn</key>
+	<import>from gnuradio import blks2</import>
+	<make>blks2.ofdm_sync_pn(
+	  $fft_length,
+	  $cp_length,
+	  $logging)
+	</make>
+	<param>
+		<name>FFT Length</name>
+		<key>fft_length</key>
+		<value>512</value>
+		<type>int</type>
+	</param>
+	<param>
+		<name>Cyclic Prefix Length</name>
+		<key>cp_length</key>
+		<value>128</value>
+		<type>int</type>
+	</param>
+	<param>
+		<name>Logging</name>
+		<key>logging</key>
+		<value>False</value>
+		<type>bool</type>
+	</param>
+	<sink>
+		<name>in</name>
+		<type>complex</type>
+	</sink>
+	<source>
+		<name>freq</name>
+		<type>float</type>
+	</source>
+	<source>
+		<name>time</name>
+		<type>byte</type>
+	</source>
+</block>
