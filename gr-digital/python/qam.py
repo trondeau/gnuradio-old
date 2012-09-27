@@ -41,6 +41,9 @@ _def_differential = True
 # coding is used within but not between each quadrant.
 _def_mod_code = mod_codes.NO_CODE
 
+def get_scalefactor(points):
+    return sum([abs(p) for p in points])/len(points)
+
 def is_power_of_four(x):
     v = log(x)/log(4)
     return int(v) == v
@@ -161,19 +164,16 @@ def qam_constellation(constellation_points=_def_constellation_points,
         points = make_differential_constellation(constellation_points, gray_coded=False)
     else:
         points = make_non_differential_constellation(constellation_points, gray_coded)
+    factor = get_scalefactor(points)
+    points = [p/factor for p in points]
+    print(points)
     side = int(sqrt(constellation_points))
-    width = 2.0/(side-1)
-    # For differential and gray-coded then gray-code the first two
-    # bits with a pre_diff_code.
-    # FIXME: It would be good to have a test to make sure that gray-coded constellations
-    # are really gray-coded.  Perhaps by checking on the correlation between bit-errors.
-    if differential and gray_coded:
-        m = constellation_points
-        pre_diff_code = range(0, m/2) + range(3*m/4, m) + range(m/2, 3*m/4)
-    else:
-        pre_diff_code = []
-    constellation = digital.constellation_rect(points, pre_diff_code, 4,
-                                               side, side, width, width)
+    width = 2.0/(side-1)/factor
+    # No pre-diff code
+    # Should add one so that we can gray-code the quadrant bits too.
+    pre_diff_code = []
+    constellation = digital_swig.constellation_rect(points, pre_diff_code, 4,
+                                                    side, side, width, width)
     return constellation
 
 # /////////////////////////////////////////////////////////////////////////////
