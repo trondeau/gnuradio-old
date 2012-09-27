@@ -84,8 +84,9 @@ namespace gr {
 	double y1 = abs(input[i]);
 	d_y1 = d_alpha*y1 + d_beta*d_y1;
 
-	double y2 = real(input[i]*input[i]);
-	d_y2 = d_alpha*y2 + d_beta*d_y2;
+	double noise = y1-d_y1;
+	double var = noise*noise;
+	d_y2 = d_alpha*var + d_beta*d_y2;
       }
       return noutput_items;
     }
@@ -93,9 +94,7 @@ namespace gr {
     double
     mpsk_snr_est_simple::snr()
     {
-      double y1_2 = d_y1*d_y1;
-      double y3 = y1_2 - d_y2 + 1e-20;
-      return 10.0*log10(y1_2/y3);
+      return 10.0*log10(d_y1/d_y2 + 1e-12);
     }
 
 
@@ -136,7 +135,7 @@ namespace gr {
     mpsk_snr_est_skew::snr()
     {
       double y3 = d_y3*d_y3 / (d_y2*d_y2*d_y2);
-      double y1_2 = d_y1*d_y1;
+      double y1_2 = d_y1*d_y1 + 1e-12;
       double x = y1_2 - d_y2;
       return 10.0*log10(y1_2 / (x + y3*y1_2));
     }
@@ -171,7 +170,7 @@ namespace gr {
     {
       double y1_2 = d_y1*d_y1;
       return 10.0*log10(2.0*sqrt(2*y1_2 - d_y2) / 
-			(d_y1 - sqrt(2*y1_2 - d_y2)));
+			(d_y1 - sqrt(2*y1_2 - d_y2)) + 1e-12);
     }
 
 
@@ -211,7 +210,7 @@ namespace gr {
 	(d_ka + d_kw - 4.0);
       double n = M2 - s;
   
-      return 10.0*log10(s / n);
+      return 10.0*log10(s / n + 1e-12);
     }
 
 
@@ -245,7 +244,7 @@ namespace gr {
     mpsk_snr_est_svr::snr()
     {
       double x = d_y1 / (d_y2 - d_y1);
-      return 10.0*log10(2.*((x-1) + sqrt(x*(x-1))));
+      return 10.0*log10(2.*((x-1) + sqrt(x*(x-1))) + 1e-12);
     }
 
   } /* namespace digital */
