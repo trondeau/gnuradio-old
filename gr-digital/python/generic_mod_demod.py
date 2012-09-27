@@ -49,6 +49,12 @@ _def_constellation_points = 16
 # Whether differential coding is used.
 _def_differential = False
 
+# agc attack rate
+_def_agc_attack = 0.6e-1 #0.6e-2
+# agc decay rate
+_def_agc_decay = 1e-3 #1e-7
+
+
 def add_common_options(parser):
     """
     Sets options common to both modulator and demodulator.
@@ -130,7 +136,7 @@ class generic_mod(gr.hier_block2):
 
         # pulse shaping filter
         nfilts = 32
-        ntaps = nfilts * 11 * int(self._samples_per_symbol)    # make nfilts filters of ntaps each
+        ntaps = nfilts * 21 * int(self._samples_per_symbol)    # make nfilts filters of ntaps each
         self.rrc_taps = gr.firdes.root_raised_cosine(
             nfilts,          # gain
             nfilts,          # sampling rate based on 32 filters in resampler
@@ -262,10 +268,10 @@ class generic_demod(gr.hier_block2):
         arity = pow(2,self.bits_per_symbol())
 
         nfilts = 32
-        ntaps = 11 * int(self._samples_per_symbol*nfilts)
+        ntaps = 101 * int(self._samples_per_symbol*nfilts)
 
         # Automatic gain control
-        self.agc = gr.agc2_cc(0.6e-1, 1e-3, 1, 1, 100)
+        self.agc = gr.agc2_cc(_def_agc_attack, _def_agc_decay, 1, 1, 100)
 
         # Frequency correction
         fll_ntaps = 55
@@ -304,6 +310,7 @@ class generic_demod(gr.hier_block2):
         
         # Connect and Initialize base class
         blocks = [self, self.agc, self.freq_recov,
+        #blocks = [self, self.freq_recov,
                   self.time_recov, self.receiver]
         if differential:
             blocks.append(self.diffdec)
@@ -354,6 +361,8 @@ class generic_demod(gr.hier_block2):
                      gr.file_sink(gr.sizeof_float, "rx_receiver_phase.32f"))
         self.connect((self.receiver, 3),
                      gr.file_sink(gr.sizeof_float, "rx_receiver_freq.32f"))
+        self.connect((self.receiver, 4),
+                     gr.file_sink(gr.sizeof_gr_complex, "rx_receiver_rotated.32fc"))
         if self._differential:
             self.connect(self.diffdec,
                          gr.file_sink(gr.sizeof_char, "rx_diffdec.8b"))
