@@ -53,4 +53,9 @@
 		<name>out</name>
 		<type>complex</type>
 	</source>
+	<source>
+		<name>snr</name>
+		<type>float</type>
+		<optional>1</optional>
+	</source>
 </block>

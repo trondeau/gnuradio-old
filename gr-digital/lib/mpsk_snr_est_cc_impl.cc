@@ -45,7 +45,7 @@ namespace gr {
 					       double alpha)
       : gr_sync_block("mpsk_snr_est_cc",
 		      gr_make_io_signature(1, 1, sizeof(gr_complex)),
-		      gr_make_io_signature(1, 1, sizeof(gr_complex)))
+		      gr_make_io_signature2(1, 2, sizeof(gr_complex), sizeof(float)))
     {
       d_snr_est = NULL;
 
@@ -76,6 +76,14 @@ namespace gr {
 			       gr_vector_const_void_star &input_items,
 			       gr_vector_void_star &output_items)
     {
+      size_t noutputs = output_items.size();
+      float *out = NULL;
+      int out_counter = 0;
+      if(noutputs == 2) {
+	out = (float*)output_items[1];
+	out_counter = 0;
+      }
+
       // This is a pass-through block; copy input to output
       memcpy(output_items[0], input_items[0],
 	     noutput_items * sizeof(gr_complex));
@@ -102,14 +110,29 @@ namespace gr {
 
 	index += x;
 	d_count = 0;
+
+	if(noutputs == 2) {
+	  out[out_counter] = d_snr_est->snr();
+	  out_counter++;
+	}
       }
   
       // Keep track of remaining items and update estimators
       x = noutput_items - index;
       d_count += x;
       d_snr_est->update(x, &in[index]);
-  
-      return noutput_items;
+
+      if(noutputs == 2) {
+	out[out_counter] = d_snr_est->snr();
+	out_counter++;
+
+	consume(0, noutput_items);
+	produce(0, noutput_items);
+	produce(1, out_counter);
+	return WORK_CALLED_PRODUCE;
+      }
+      else
+	return noutput_items;
     }
 
     double
