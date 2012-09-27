@@ -65,12 +65,6 @@ gr_tag_debug::work(int noutput_items,
 {
   gruel::scoped_lock l(d_mutex);
 
-  if(d_display) {
-    std::cout << std::endl
-	      << "----------------------------------------------------------------------";
-    std::cout << std::endl << "Tag Debug: " << d_name << std::endl;
-  }
-
   uint64_t abs_N, end_N;
   for(size_t i = 0; i < input_items.size(); i++) {
     abs_N = nitems_read(i);
@@ -79,8 +73,8 @@ gr_tag_debug::work(int noutput_items,
     d_tags.clear();
     get_tags_in_range(d_tags, i, abs_N, end_N);
 
-    if(d_display) {
-      std::cout << "Input Stream: " << i << std::endl;
+    if((d_display) && (d_tags.size() > 0)) {
+      std::cout << std::endl << "Input Stream: " << i << std::endl;
       for(d_tags_itr = d_tags.begin(); d_tags_itr != d_tags.end(); d_tags_itr++) {
 	std::cout << std::setw(10) << "Offset: " << d_tags_itr->offset
 		  << std::setw(10) << "Source: " << pmt::pmt_symbol_to_string(d_tags_itr->srcid)
@@ -89,11 +83,6 @@ gr_tag_debug::work(int noutput_items,
 	pmt::pmt_print(d_tags_itr->value);
       }
     }
-  }
-
-  if(d_display) {
-    std::cout << "----------------------------------------------------------------------";
-    std::cout << std::endl;
   }
 
   return noutput_items;
