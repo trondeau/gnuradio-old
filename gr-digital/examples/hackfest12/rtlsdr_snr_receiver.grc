@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='ASCII'?>
 <flow_graph>
-  <timestamp>Sat Sep 29 15:04:34 2012</timestamp>
+  <timestamp>Mon Oct  1 20:21:13 2012</timestamp>
   <block>
     <key>options</key>
     <param>
@@ -315,61 +315,6 @@
     <key>variable_qtgui_range</key>
     <param>
       <key>id</key>
-      <value>gain</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value>RX Gain</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>10</value>
-    </param>
-    <param>
-      <key>start</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>stop</key>
-      <value>31.5</value>
-    </param>
-    <param>
-      <key>step</key>
-      <value>0.5</value>
-    </param>
-    <param>
-      <key>widget</key>
-      <value>counter_slider</value>
-    </param>
-    <param>
-      <key>orient</key>
-      <value>Qt.Horizontal</value>
-    </param>
-    <param>
-      <key>min_len</key>
-      <value>200</value>
-    </param>
-    <param>
-      <key>gui_hint</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(172, 269)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_qtgui_range</key>
-    <param>
-      <key>id</key>
       <value>freq</value>
     </param>
     <param>
@@ -415,61 +360,6 @@
     <param>
       <key>_coordinate</key>
       <value>(44, 267)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable_qtgui_range</key>
-    <param>
-      <key>id</key>
-      <value>fine_freq</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value>Fine Frequency</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>26950</value>
-    </param>
-    <param>
-      <key>start</key>
-      <value>-50e3</value>
-    </param>
-    <param>
-      <key>stop</key>
-      <value>50e3</value>
-    </param>
-    <param>
-      <key>step</key>
-      <value>100</value>
-    </param>
-    <param>
-      <key>widget</key>
-      <value>counter_slider</value>
-    </param>
-    <param>
-      <key>orient</key>
-      <value>Qt.Horizontal</value>
-    </param>
-    <param>
-      <key>min_len</key>
-      <value>200</value>
-    </param>
-    <param>
-      <key>gui_hint</key>
-      <value>2,1,1,1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(45, 395)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -556,100 +446,6 @@
     <param>
       <key>_coordinate</key>
       <value>(536, 327)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>gr_agc2_xx</key>
-    <param>
-      <key>id</key>
-      <value>gr_agc2_xx_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>complex</value>
-    </param>
-    <param>
-      <key>attack_rate</key>
-      <value>1e-1</value>
-    </param>
-    <param>
-      <key>decay_rate</key>
-      <value>1e-2</value>
-    </param>
-    <param>
-      <key>reference</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>gain</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>max_gain</key>
-      <value>0.0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(295, 105)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>digital_pfb_clock_sync_xxx</key>
-    <param>
-      <key>id</key>
-      <value>digital_pfb_clock_sync_xxx_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>ccf</value>
-    </param>
-    <param>
-      <key>sps</key>
-      <value>sps</value>
-    </param>
-    <param>
-      <key>loop_bw</key>
-      <value>2*3.14/100.0</value>
-    </param>
-    <param>
-      <key>taps</key>
-      <value>rrc_taps</value>
-    </param>
-    <param>
-      <key>filter_size</key>
-      <value>nfilts</value>
-    </param>
-    <param>
-      <key>init_phase</key>
-      <value>nfilts/2</value>
-    </param>
-    <param>
-      <key>max_dev</key>
-      <value>1.5</value>
-    </param>
-    <param>
-      <key>osps</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(501, 89)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -812,10 +608,10 @@
     </param>
   </block>
   <block>
-    <key>gr_null_sink</key>
+    <key>gr_agc2_xx</key>
     <param>
       <key>id</key>
-      <value>gr_null_sink_0</value>
+      <value>gr_agc2_xx_0</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -826,12 +622,28 @@
       <value>complex</value>
     </param>
     <param>
-      <key>vlen</key>
-      <value>1</value>
+      <key>attack_rate</key>
+      <value>1e-1</value>
+    </param>
+    <param>
+      <key>decay_rate</key>
+      <value>1e-2</value>
+    </param>
+    <param>
+      <key>reference</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>gain</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>max_gain</key>
+      <value>0.0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1013, 333)</value>
+      <value>(295, 105)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -839,30 +651,109 @@
     </param>
   </block>
   <block>
-    <key>digital_mpsk_snr_est_cc</key>
+    <key>variable_qtgui_range</key>
     <param>
       <key>id</key>
-      <value>digital_mpsk_snr_est_cc_0</value>
+      <value>fine_freq</value>
     </param>
     <param>
       <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
-      <key>type</key>
-      <value>2</value>
+      <key>label</key>
+      <value>Fine Frequency</value>
     </param>
     <param>
-      <key>tag_nsamples</key>
-      <value>10000</value>
+      <key>value</key>
+      <value>-1700</value>
     </param>
     <param>
-      <key>alpha</key>
-      <value>0.001</value>
+      <key>start</key>
+      <value>-50e3</value>
+    </param>
+    <param>
+      <key>stop</key>
+      <value>50e3</value>
+    </param>
+    <param>
+      <key>step</key>
+      <value>100</value>
+    </param>
+    <param>
+      <key>widget</key>
+      <value>counter_slider</value>
+    </param>
+    <param>
+      <key>orient</key>
+      <value>Qt.Horizontal</value>
+    </param>
+    <param>
+      <key>min_len</key>
+      <value>200</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>2,1,1,1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(775, 330)</value>
+      <value>(45, 395)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_range</key>
+    <param>
+      <key>id</key>
+      <value>gain</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>RX Gain</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>15</value>
+    </param>
+    <param>
+      <key>start</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>stop</key>
+      <value>31.5</value>
+    </param>
+    <param>
+      <key>step</key>
+      <value>0.5</value>
+    </param>
+    <param>
+      <key>widget</key>
+      <value>counter_slider</value>
+    </param>
+    <param>
+      <key>orient</key>
+      <value>Qt.Horizontal</value>
+    </param>
+    <param>
+      <key>min_len</key>
+      <value>200</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(172, 269)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -889,7 +780,7 @@
     </param>
     <param>
       <key>size</key>
-      <value>1024</value>
+      <value>500</value>
     </param>
     <param>
       <key>bw</key>
@@ -897,7 +788,7 @@
     </param>
     <param>
       <key>nconnections</key>
-      <value>1</value>
+      <value>3</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -905,7 +796,232 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(807, 436)</value>
+      <value>(1331, 373)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>gr_null_sink</key>
+    <param>
+      <key>id</key>
+      <value>gr_null_sink_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1047, 307)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>gr_null_sink</key>
+    <param>
+      <key>id</key>
+      <value>gr_null_sink_0_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1053, 385)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>digital_mpsk_snr_est_cc</key>
+    <param>
+      <key>id</key>
+      <value>digital_mpsk_snr_est_cc_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>tag_nsamples</key>
+      <value>10000</value>
+    </param>
+    <param>
+      <key>alpha</key>
+      <value>0.001</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(811, 304)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>digital_pfb_clock_sync_xxx</key>
+    <param>
+      <key>id</key>
+      <value>digital_pfb_clock_sync_xxx_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>ccf</value>
+    </param>
+    <param>
+      <key>sps</key>
+      <value>sps</value>
+    </param>
+    <param>
+      <key>loop_bw</key>
+      <value>2*3.14/100.0</value>
+    </param>
+    <param>
+      <key>taps</key>
+      <value>rrc_taps</value>
+    </param>
+    <param>
+      <key>filter_size</key>
+      <value>nfilts</value>
+    </param>
+    <param>
+      <key>init_phase</key>
+      <value>nfilts/2</value>
+    </param>
+    <param>
+      <key>max_dev</key>
+      <value>1.5</value>
+    </param>
+    <param>
+      <key>osps</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(501, 89)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>digital_mpsk_snr_est_cc</key>
+    <param>
+      <key>id</key>
+      <value>digital_mpsk_snr_est_cc_0_1</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>3</value>
+    </param>
+    <param>
+      <key>tag_nsamples</key>
+      <value>10000</value>
+    </param>
+    <param>
+      <key>alpha</key>
+      <value>0.001</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(811, 460)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>digital_mpsk_snr_est_cc</key>
+    <param>
+      <key>id</key>
+      <value>digital_mpsk_snr_est_cc_0_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>tag_nsamples</key>
+      <value>10000</value>
+    </param>
+    <param>
+      <key>alpha</key>
+      <value>0.001</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(811, 382)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>gr_null_sink</key>
+    <param>
+      <key>id</key>
+      <value>gr_null_sink_0_1</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1057, 463)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -991,8 +1107,14 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>digital_pfb_clock_sync_xxx_0</source_block_id>
-    <sink_block_id>digital_mpsk_snr_est_cc_0</sink_block_id>
+    <source_block_id>digital_mpsk_snr_est_cc_0_0</source_block_id>
+    <sink_block_id>qtgui_time_sink_x_0_0</sink_block_id>
+    <source_key>1</source_key>
+    <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>digital_mpsk_snr_est_cc_0_0</source_block_id>
+    <sink_block_id>gr_null_sink_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -1007,5 +1129,35 @@
     <sink_block_id>gr_null_sink_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>digital_pfb_clock_sync_xxx_0</source_block_id>
+    <sink_block_id>digital_mpsk_snr_est_cc_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>digital_pfb_clock_sync_xxx_0</source_block_id>
+    <sink_block_id>digital_mpsk_snr_est_cc_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>digital_pfb_clock_sync_xxx_0</source_block_id>
+    <sink_block_id>digital_mpsk_snr_est_cc_0_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>digital_mpsk_snr_est_cc_0_1</source_block_id>
+    <sink_block_id>gr_null_sink_0_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>digital_mpsk_snr_est_cc_0_1</source_block_id>
+    <sink_block_id>qtgui_time_sink_x_0_0</sink_block_id>
+    <source_key>1</source_key>
+    <sink_key>2</sink_key>
   </connection>
 </flow_graph>
